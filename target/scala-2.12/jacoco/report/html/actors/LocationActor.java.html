@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocationActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actors</a> &gt; <span class="el_source">LocationActor.java</span></div><h1>LocationActor.java</h1><pre class="source lang-java linenums">package actors;
+
+import akka.actor.AbstractActor;
+import akka.actor.Props;
+import akka.actor.AbstractActor.Receive;
+import service.TwitterApi;
+import models.*;
+
+public class LocationActor extends AbstractActor {
+
+TwitterApi twitterService;
+	
+	/**
+	 * @param twitterService
+	 */
+<span class="fc" id="L16">	public LocationActor(TwitterApi twitterService) {</span>
+		
+<span class="fc" id="L18">		this.twitterService = twitterService;</span>
+<span class="fc" id="L19">	}</span>
+	public static Props getProps(TwitterApi twitterService) {
+<span class="fc" id="L21">		return Props.create(LocationActor.class,twitterService);</span>
+	}
+	
+	 public static class LocationActorProtocol {
+	        public final Double longitude;
+	        public final Double latitude;
+
+<span class="fc" id="L28">	        public LocationActorProtocol(Double latitude,Double longitude) {</span>
+<span class="fc" id="L29">	            this.longitude = longitude;</span>
+<span class="fc" id="L30">	            this.latitude = latitude;</span>
+<span class="fc" id="L31">	        }</span>
+	    }
+	
+	 @Override
+		public Receive createReceive() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L37">			return receiveBuilder()</span>
+<span class="fc" id="L38">					.match(LocationActorProtocol.class, i -&gt; </span>
+						sender().tell(DataProcessingOnSearchTweets.searchLocationTweets(i.latitude,i.longitude,twitterService), self()))
+<span class="fc" id="L40">						.build();</span>
+		}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

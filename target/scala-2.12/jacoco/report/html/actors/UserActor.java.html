@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actors</a> &gt; <span class="el_source">UserActor.java</span></div><h1>UserActor.java</h1><pre class="source lang-java linenums">package actors;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.event.LoggingAdapter;
+import models.SearchResults;
+import models.Tweet;
+import play.libs.Json;
+import akka.event.Logging;
+public class UserActor extends AbstractActor {
+
+	private final ActorRef ws;
+<span class="fc" id="L21">	private final LoggingAdapter logger = Logging.getLogger(getContext().system(), this);</span>
+	
+<span class="fc" id="L23">	public UserActor(final ActorRef wsOut) {</span>
+<span class="fc" id="L24">		ws = wsOut;</span>
+<span class="fc" id="L25">	}</span>
+	
+	public static Props getProps(final ActorRef wsout) {
+<span class="fc" id="L28">		return Props.create(UserActor.class, wsout);</span>
+	}
+	
+	@Override
+	public void preStart() {
+		
+<span class="fc" id="L34">	}</span>
+	
+	public static class TweetDataMessage { 
+        public final SearchResults result;
+<span class="nc" id="L38">        public TweetDataMessage(SearchResults result) {</span>
+<span class="nc" id="L39">            this.result = result;</span>
+<span class="nc" id="L40">        }</span>
+	}
+	public static class outMessage { 
+        public  String keyword;
+        public List&lt;Tweet&gt; tweet;
+		public String emotion;
+		
+<span class="nc" id="L47">		public outMessage(String keyword, List&lt;Tweet&gt; tweet,String emotion) {</span>
+			
+<span class="nc" id="L49">			this.keyword = keyword;</span>
+<span class="nc" id="L50">			this.tweet = tweet;</span>
+<span class="nc" id="L51">			this.emotion = emotion;</span>
+<span class="nc" id="L52">		}</span>
+        
+	}
+	
+	 private void sendTweetData(TweetDataMessage msg) throws JsonProcessingException, InterruptedException, ExecutionException{
+<span class="nc" id="L57">	        final ObjectNode response = Json.newObject();</span>
+<span class="nc" id="L58">	        ObjectMapper objectMapper = new ObjectMapper();	</span>
+<span class="nc" id="L59">	        msg.result.getEmotion().thenCombine(msg.result.getTweet(), (emotion,tw)-&gt;new outMessage(msg.result.getKeyword(), tw, emotion)).thenAccept(om-&gt;{</span>
+	        	try {
+	        		
+	        response.put(&quot;data&quot;,objectMapper.writeValueAsString(om));
+	        ws.tell(response, self());}
+	        catch(JsonProcessingException e) {}	
+	        });
+
+<span class="nc" id="L67">	    }</span>
+	
+	@Override
+	public Receive createReceive() {
+<span class="fc" id="L71">		return receiveBuilder()</span>
+<span class="fc" id="L72">				.match(TweetDataMessage.class, msg -&gt; {logger.info(&quot;User Actor Started&quot;); sendTweetData(msg); })</span>
+<span class="fc" id="L73">				.match(ObjectNode.class, json -&gt; registerNewKeyWord(json))</span>
+<span class="fc" id="L74">				.build();</span>
+				
+	}
+	
+	private void registerNewKeyWord(ObjectNode json) {
+<span class="nc" id="L79">		context().actorSelection(&quot;/user/reactiveTweetActor/&quot;)</span>
+<span class="nc" id="L80">        	.tell(new ReactiveTweetActor.RegisterSearchKeyword(json.get(&quot;keyword&quot;).asText()), self());</span>
+<span class="nc" id="L81">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

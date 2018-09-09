@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>index.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html</a> &gt; <span class="el_source">index.template.scala</span></div><h1>index.template.scala</h1><pre class="source lang-java linenums">
+package views.html
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import scala.collection.JavaConverters._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.mvc.Http.Context.Implicit._
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+
+<span class="fc" id="L25">object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[play.mvc.Http.Request,play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply/*1.2*/(request:play.mvc.Http.Request):play.twirl.api.HtmlFormat.Appendable = {
+<span class="fc" id="L29">    _display_ {</span>
+      {
+
+
+<span class="fc" id="L33">Seq[Any](format.raw/*2.1*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L34">&quot;&quot;&quot;),format.raw/*3.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+<span class="fc" id="L37">        &quot;&quot;&quot;),format.raw/*6.62*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L38">        &quot;&quot;&quot;),format.raw/*7.9*/(&quot;&quot;&quot;&lt;title&gt;Search Tweets&lt;/title&gt;</span>
+        
+<span class="fc" id="L40">        &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;&quot;&quot;&quot;),_display_(/*9.54*/routes/*9.60*/.Assets.at(&quot;bootstrap-3.3.7-dist/css/bootstrap.min.css&quot;)),format.raw/*9.116*/(&quot;&quot;&quot;&quot;&gt;</span>
+        
+    &lt;/head&gt;
+    &lt;body &gt;
+          &lt;nav class = &quot;navbar navbar-default&quot;&gt;
+	          &lt;div class=&quot;navbar-header&quot;&gt;
+	      		&lt;p class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Tweet Miner&lt;/P&gt;
+	   		 &lt;/div&gt;
+				&lt;div class=&quot;container&quot;&gt;
+					&lt;form class=&quot;navbar-form navbar-left needs-validation&quot; role=&quot;search&quot; id =&quot;formforsearchKeyword&quot;&gt;
+						 &lt;div class=&quot;form-group&quot;&gt;
+						 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Search&quot; id=&quot;searchTerm&quot; required&gt;
+						 &lt;/div&gt;
+					 	&lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Search&lt;/button&gt;
+					&lt;/form&gt;  
+				 &lt;/div&gt;
+			&lt;/nav&gt;
+			
+
+	
+<span class="fc" id="L60">	&lt;div id=&quot;divForWebsocket&quot; data-ws-url=&quot;&quot;&quot;&quot;),_display_(/*29.42*/routes/*29.48*/.HomeController.ws.webSocketURL(request)),format.raw/*29.88*/(&quot;&quot;&quot;&quot;&gt;</span>
+	    &lt;div id=&quot;data&quot;&gt; &lt;/div&gt;
+  	&lt;/div&gt;
+		
+        &lt;div class=&quot;newtweet&quot; style=&quot;display:none;&quot;&gt;
+            &lt;h4 class=&quot;&quot; id=&quot;title&quot;&gt;&lt;/h4&gt;
+	  		&lt;div class=&quot;&quot;&gt;
+				&lt;span class=&quot;&quot; id=&quot;&quot;&gt;hello&lt;/span&gt;
+				
+				&lt;p&gt;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&lt;/p&gt;
+	  		&lt;/div&gt;
+		&lt;/div&gt;
+&lt;script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js'&gt;&lt;/script&gt;
+<span class="fc" id="L73">&lt;script src=&quot;&quot;&quot;&quot;),_display_(/*42.15*/routes/*42.21*/.Assets.at(&quot;javascripts/displayTweets.js&quot;)),format.raw/*42.63*/(&quot;&quot;&quot;&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span>
+      		
+    &lt;/body&gt;
+    
+&lt;/html&gt;
+ 
+  
+
+	
+
+&quot;&quot;&quot;))
+      }
+    }
+  }
+
+<span class="fc" id="L88">  def render(request:play.mvc.Http.Request): play.twirl.api.HtmlFormat.Appendable = apply(request)</span>
+
+<span class="nc" id="L90">  def f:((play.mvc.Http.Request) =&gt; play.twirl.api.HtmlFormat.Appendable) = (request) =&gt; apply(request)</span>
+
+<span class="nc" id="L92">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  DATE: Mon Aug 13 20:26:07 EDT 2018
+                  SOURCE: C:/Users/JASKARN SINGH/Desktop/Assignement-2Updated/Soen6441Assignment2/app/views/index.scala.html
+                  HASH: 33661319e0f5f92549f575196f157a34cd066ad9
+                  MATRIX: 963-&gt;1|1088-&gt;33|1115-&gt;34|1194-&gt;139|1229-&gt;148|1346-&gt;239|1360-&gt;245|1437-&gt;301|2083-&gt;920|2098-&gt;926|2159-&gt;966|2774-&gt;1554|2789-&gt;1560|2852-&gt;1602
+                  LINES: 28-&gt;1|33-&gt;2|34-&gt;3|37-&gt;6|38-&gt;7|40-&gt;9|40-&gt;9|40-&gt;9|60-&gt;29|60-&gt;29|60-&gt;29|73-&gt;42|73-&gt;42|73-&gt;42
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

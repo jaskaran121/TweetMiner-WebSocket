@@ -1,0 +1,116 @@
+[0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector(-Djacoco-agent.destfile=C:\Users\JASKARN SINGH\Desktop\Assignement-2Updated\Soen6441Assignment2\target\scala-2.12\jacoco\data\jacoco.exec)[0m
+[0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 9 initial tasks for 9 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllertest.ControllerTest, sbt.ForkMain$AnnotatedFingerscan@23200921, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestSearchHashTagController[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestSearchHashTagController[0m finished, took 14.575 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestgetLocationrController[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestgetLocationrController[0m finished, took 0.653 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestshowUserController[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestshowUserController[0m finished, took 0.332 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestcreateWordCountController[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestcreateWordCountController[0m finished, took 0.477 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestWebSocketreject[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestWebSocketreject[0m finished, took 3.168 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestWebSocketsucess[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestWebSocketsucess[0m finished, took 1.339 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestIndexController[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest controllertest.[33mControllerTest[0m.[36mtestIndexController[0m finished, took 0.604 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 7 total, 21.92s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 7 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(ActorsTest.ReactiveTweetActorTest, sbt.ForkMain$AnnotatedFingerscan@59319ec9, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mReactiveTweetActorTest[0m.[36mtestIt[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mReactiveTweetActorTest[0m.[36mtestIt[0m finished, took 0.517 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.684s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(modelTest.TestDataProcessingOnSerchTweetsModel, sbt.ForkMain$AnnotatedFingerscan@59058d00, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsearchLocationTweets[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsearchLocationTweets[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestgetUserData[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestgetUserData[0m finished, took 0.004 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestSearchHashTag[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestSearchHashTag[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestcreateWordCount[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestcreateWordCount[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountneutral[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountneutral[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountHappy[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountHappy[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestgetUser20TopTweets[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestgetUser20TopTweets[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountSad[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmotionCountSad[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmpty[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTestDataProcessingOnSerchTweetsModel[0m.[36mtestsetEmpty[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 9 total, 0.014s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 9 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(ActorsTest.UserActorTest, sbt.ForkMain$AnnotatedFingerscan@1899f1fe, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mUserActorTest[0m.[36mtestIt[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mUserActorTest[0m.[36mtestIt[0m finished, took 0.098 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.144s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(ActorsTest.HashTagActorTest, sbt.ForkMain$AnnotatedFingerscan@596ef935, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mHashTagActorTest[0m.[36mtestIt[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mHashTagActorTest[0m.[36mtestIt[0m finished, took 0.063 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.101s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(ActorsTest.LocationActorTest, sbt.ForkMain$AnnotatedFingerscan@4015d991, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mLocationActorTest[0m.[36mtestIt[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mLocationActorTest[0m.[36mtestIt[0m finished, took 0.091 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.14s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(ActorsTest.TweetUserActorTest, sbt.ForkMain$AnnotatedFingerscan@17545c7b, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mTweetUserActorTest[0m.[36mtestIt[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest ActorsTest.[33mTweetUserActorTest[0m.[36mtestIt[0m finished, took 0.066 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.119s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(modelTest.SearchResultsTest, sbt.ForkMain$AnnotatedFingerscan@51a1eac, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetConstructor[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetConstructor[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetTweet[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetTweet[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetEmotion[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetEmotion[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetKeyword[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mSearchResultsTest[0m.[36mtestSetAndGetKeyword[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 0.002s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(modelTest.TweetTest, sbt.ForkMain$AnnotatedFingerscan@32074393, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLocation[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLocation[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetConstructor[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetConstructor[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLatitude[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLatitude[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetTweet[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetTweet[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLongitude[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetLongitude[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetHashtags[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetHashtags[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetScreenName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest modelTest.[33mTweetTest[0m.[36mtestSetAndGetScreenName[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 7 total, 0.018s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 7 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 32, Failed 0, Errors 0, Passed 32[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	controllertest.ControllerTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ActorsTest.ReactiveTweetActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modelTest.TestDataProcessingOnSerchTweetsModel[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ActorsTest.UserActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ActorsTest.HashTagActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ActorsTest.LocationActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ActorsTest.TweetUserActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modelTest.SearchResultsTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modelTest.TweetTest[0m

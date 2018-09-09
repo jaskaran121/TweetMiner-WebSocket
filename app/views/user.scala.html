@@ -1,0 +1,34 @@
+
+@import java.util.concurrent.CompletableFuture;
+@(user:CompletableFuture[twitter4j.User],recentPost:CompletableFuture[List[twitter4j.Status]])
+
+<!-- Author Gagan -->
+    <html>
+        <head>
+            <title>User</title>
+          
+        </head>
+
+        <body>
+        
+      
+        <h2>User Profile</h2>
+        <img src="@user.get.getBiggerProfileImageURLHttps()">
+		<p><b>Following:-</b>@user.get.getFriendsCount</p>
+		<p><b>Followers:-</b>@user.get.getFollowersCount</p>
+		<p><b>Likes:-</b>@user.get.getFavouritesCount</p>
+		<p><b>No of Tweets:-</b>@user.get.getStatusesCount</p>
+		<a target="_blank" href="https://twitter.com/@user.get.getScreenName" >@user.get.getName</a>
+	
+
+        
+	<h2>Recent Posts:</h2>
+	
+	@if(!recentPost.get.isEmpty){
+		@for(status <- recentPost.get){
+			<p><b>@status.getUser().getScreenName()</b></p>
+		     <p> @status.getText</p>
+          <p>------------------------------------------------------------------------------------------------------------------------------------------------</P>		
+		}
+	}
+ </body>

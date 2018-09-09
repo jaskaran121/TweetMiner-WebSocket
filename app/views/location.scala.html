@@ -1,0 +1,15 @@
+@import java.util.concurrent.CompletableFuture;
+@(tweets:CompletableFuture[List[String]],latitude:Double,longitude:Double)
+
+<html>
+<body>
+<h2>@tweets.get.size() Results searched for the selected location :- {@latitude,@longitude}</h2>
+
+@for(tweet<-tweets.get){
+<p>Tweet:-@tweet</p>
+
+<p>------------------------------------------------------------------------------------------------------------------------------------------------</P>
+}
+
+</body>
+</html>

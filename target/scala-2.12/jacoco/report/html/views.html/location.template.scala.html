@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>location.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html</a> &gt; <span class="el_source">location.template.scala</span></div><h1>location.template.scala</h1><pre class="source lang-java linenums">
+package views.html
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import scala.collection.JavaConverters._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.mvc.Http.Context.Implicit._
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+/*1.2*/import java.util.concurrent.CompletableFuture;
+
+<span class="fc" id="L26">object location extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template3[CompletableFuture[List[String]],Double,Double,play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply/*2.2*/(tweets:CompletableFuture[List[String]],latitude:Double,longitude:Double):play.twirl.api.HtmlFormat.Appendable = {
+<span class="fc" id="L30">    _display_ {</span>
+      {
+
+
+<span class="fc" id="L34">Seq[Any](format.raw/*2.75*/(&quot;&quot;&quot;</span>
+
+<span class="fc" id="L36">&quot;&quot;&quot;),format.raw/*4.1*/(&quot;&quot;&quot;&lt;html&gt;</span>
+&lt;body&gt;
+<span class="fc" id="L38">&lt;h2&gt;&quot;&quot;&quot;),_display_(/*6.6*/tweets/*6.12*/.get.size()),format.raw/*6.23*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*6.24*/(&quot;&quot;&quot;Results searched for the selected location :- &quot;&quot;&quot;),format.raw/*6.70*/(&quot;&quot;&quot;{&quot;&quot;&quot;),_display_(/*6.72*/latitude),format.raw/*6.80*/(&quot;&quot;&quot;,&quot;&quot;&quot;),_display_(/*6.82*/longitude),format.raw/*6.91*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*6.92*/(&quot;&quot;&quot;&lt;/h2&gt;</span>
+
+<span class="fc" id="L40">&quot;&quot;&quot;),_display_(/*8.2*/for(tweet&lt;-tweets.get) yield /*8.24*/{_display_(Seq[Any](format.raw/*8.25*/(&quot;&quot;&quot;</span>
+&quot;&quot;&quot;),format.raw/*9.1*/(&quot;&quot;&quot;&lt;p&gt;Tweet:-&quot;&quot;&quot;),_display_(/*9.12*/tweet),format.raw/*9.17*/(&quot;&quot;&quot;&lt;/p&gt;
+
+&lt;p&gt;------------------------------------------------------------------------------------------------------------------------------------------------&lt;/P&gt;
+<span class="fc" id="L44">&quot;&quot;&quot;)))}),format.raw/*12.2*/(&quot;&quot;&quot;</span>
+
+<span class="fc" id="L46">&quot;&quot;&quot;),format.raw/*14.1*/(&quot;&quot;&quot;&lt;/body&gt;</span>
+&lt;/html&gt;&quot;&quot;&quot;))
+      }
+    }
+  }
+
+<span class="fc" id="L52">  def render(tweets:CompletableFuture[List[String]],latitude:Double,longitude:Double): play.twirl.api.HtmlFormat.Appendable = apply(tweets,latitude,longitude)</span>
+
+<span class="nc" id="L54">  def f:((CompletableFuture[List[String]],Double,Double) =&gt; play.twirl.api.HtmlFormat.Appendable) = (tweets,latitude,longitude) =&gt; apply(tweets,latitude,longitude)</span>
+
+<span class="nc" id="L56">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  DATE: Mon Aug 13 20:26:07 EDT 2018
+                  SOURCE: C:/Users/JASKARN SINGH/Desktop/Assignement-2Updated/Soen6441Assignment2/app/views/location.scala.html
+                  HASH: 2de25ef61f60267b5e9651900a04adcf3eb62697
+                  MATRIX: 651-&gt;1|1044-&gt;50|1212-&gt;123|1242-&gt;127|1288-&gt;148|1302-&gt;154|1333-&gt;165|1361-&gt;166|1434-&gt;212|1462-&gt;214|1490-&gt;222|1518-&gt;224|1547-&gt;233|1575-&gt;234|1610-&gt;244|1647-&gt;266|1685-&gt;267|1713-&gt;269|1750-&gt;280|1775-&gt;285|1967-&gt;447|1998-&gt;451
+                  LINES: 24-&gt;1|29-&gt;2|34-&gt;2|36-&gt;4|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|38-&gt;6|40-&gt;8|40-&gt;8|40-&gt;8|41-&gt;9|41-&gt;9|41-&gt;9|44-&gt;12|46-&gt;14
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

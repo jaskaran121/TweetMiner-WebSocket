@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>user.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html</a> &gt; <span class="el_source">user.template.scala</span></div><h1>user.template.scala</h1><pre class="source lang-java linenums">
+package views.html
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import scala.collection.JavaConverters._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.mvc.Http.Context.Implicit._
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+/*2.2*/import java.util.concurrent.CompletableFuture;
+
+<span class="fc" id="L26">object user extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[CompletableFuture[twitter4j.User],CompletableFuture[List[twitter4j.Status]],play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply/*3.2*/(user:CompletableFuture[twitter4j.User],recentPost:CompletableFuture[List[twitter4j.Status]]):play.twirl.api.HtmlFormat.Appendable = {
+<span class="fc" id="L30">    _display_ {</span>
+      {
+
+
+<span class="fc" id="L34">Seq[Any](format.raw/*4.1*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L35">&quot;&quot;&quot;),format.raw/*5.1*/(&quot;&quot;&quot;&lt;!-- Author Gagan --&gt;</span>
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;User&lt;/title&gt;
+          
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        
+      
+        &lt;h2&gt;User Profile&lt;/h2&gt;
+<span class="fc" id="L46">        &lt;img src=&quot;&quot;&quot;&quot;),_display_(/*16.20*/user/*16.24*/.get.getBiggerProfileImageURLHttps()),format.raw/*16.60*/(&quot;&quot;&quot;&quot;&gt;</span>
+<span class="fc" id="L47">		&lt;p&gt;&lt;b&gt;Following:-&lt;/b&gt;&quot;&quot;&quot;),_display_(/*17.25*/user/*17.29*/.get.getFriendsCount),format.raw/*17.49*/(&quot;&quot;&quot;&lt;/p&gt;</span>
+<span class="fc" id="L48">		&lt;p&gt;&lt;b&gt;Followers:-&lt;/b&gt;&quot;&quot;&quot;),_display_(/*18.25*/user/*18.29*/.get.getFollowersCount),format.raw/*18.51*/(&quot;&quot;&quot;&lt;/p&gt;</span>
+<span class="fc" id="L49">		&lt;p&gt;&lt;b&gt;Likes:-&lt;/b&gt;&quot;&quot;&quot;),_display_(/*19.21*/user/*19.25*/.get.getFavouritesCount),format.raw/*19.48*/(&quot;&quot;&quot;&lt;/p&gt;</span>
+<span class="fc" id="L50">		&lt;p&gt;&lt;b&gt;No of Tweets:-&lt;/b&gt;&quot;&quot;&quot;),_display_(/*20.28*/user/*20.32*/.get.getStatusesCount),format.raw/*20.53*/(&quot;&quot;&quot;&lt;/p&gt;</span>
+<span class="fc" id="L51">		&lt;a target=&quot;_blank&quot; href=&quot;https://twitter.com/&quot;&quot;&quot;),_display_(/*21.49*/user/*21.53*/.get.getScreenName),format.raw/*21.71*/(&quot;&quot;&quot;&quot; &gt;&quot;&quot;&quot;),_display_(/*21.75*/user/*21.79*/.get.getName),format.raw/*21.91*/(&quot;&quot;&quot;&lt;/a&gt;</span>
+	
+
+        
+	&lt;h2&gt;Recent Posts:&lt;/h2&gt;
+	
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">	&quot;&quot;&quot;),_display_(/*27.3*/if(!recentPost.get.isEmpty)/*27.30*/{_display_(Seq[Any](format.raw/*27.31*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L58">		&quot;&quot;&quot;),_display_(/*28.4*/for(status &lt;- recentPost.get) yield /*28.33*/{_display_(Seq[Any](format.raw/*28.34*/(&quot;&quot;&quot;</span>
+			&quot;&quot;&quot;),format.raw/*29.4*/(&quot;&quot;&quot;&lt;p&gt;&lt;b&gt;&quot;&quot;&quot;),_display_(/*29.11*/status/*29.17*/.getUser().getScreenName()),format.raw/*29.43*/(&quot;&quot;&quot;&lt;/b&gt;&lt;/p&gt;
+		     &lt;p&gt; &quot;&quot;&quot;),_display_(/*30.13*/status/*30.19*/.getText),format.raw/*30.27*/(&quot;&quot;&quot;&lt;/p&gt;
+          &lt;p&gt;------------------------------------------------------------------------------------------------------------------------------------------------&lt;/P&gt;		
+<span class="fc" id="L62">		&quot;&quot;&quot;)))}),format.raw/*32.4*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L63">	&quot;&quot;&quot;)))}),format.raw/*33.3*/(&quot;&quot;&quot;</span>
+<span class="fc" id="L64"> &quot;&quot;&quot;),format.raw/*34.2*/(&quot;&quot;&quot;&lt;/body&gt;&quot;&quot;&quot;))</span>
+      }
+    }
+  }
+
+<span class="fc" id="L69">  def render(user:CompletableFuture[twitter4j.User],recentPost:CompletableFuture[List[twitter4j.Status]]): play.twirl.api.HtmlFormat.Appendable = apply(user,recentPost)</span>
+
+<span class="nc" id="L71">  def f:((CompletableFuture[twitter4j.User],CompletableFuture[List[twitter4j.Status]]) =&gt; play.twirl.api.HtmlFormat.Appendable) = (user,recentPost) =&gt; apply(user,recentPost)</span>
+
+<span class="nc" id="L73">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  DATE: Mon Aug 13 20:26:07 EDT 2018
+                  SOURCE: C:/Users/JASKARN SINGH/Desktop/Assignement-2Updated/Soen6441Assignment2/app/views/user.scala.html
+                  HASH: e9f029fdd2f9d756c2b2ef0d3aeb75ad9d267349
+                  MATRIX: 651-&gt;2|1070-&gt;50|1257-&gt;144|1284-&gt;145|1499-&gt;333|1512-&gt;337|1569-&gt;373|1623-&gt;400|1636-&gt;404|1677-&gt;424|1733-&gt;453|1746-&gt;457|1789-&gt;479|1841-&gt;504|1854-&gt;508|1898-&gt;531|1957-&gt;563|1970-&gt;567|2012-&gt;588|2092-&gt;641|2105-&gt;645|2144-&gt;663|2175-&gt;667|2188-&gt;671|2221-&gt;683|2292-&gt;728|2328-&gt;755|2367-&gt;756|2397-&gt;760|2442-&gt;789|2481-&gt;790|2512-&gt;794|2546-&gt;801|2561-&gt;807|2608-&gt;833|2656-&gt;854|2671-&gt;860|2700-&gt;868|2902-&gt;1040|2935-&gt;1043|2964-&gt;1045
+                  LINES: 24-&gt;2|29-&gt;3|34-&gt;4|35-&gt;5|46-&gt;16|46-&gt;16|46-&gt;16|47-&gt;17|47-&gt;17|47-&gt;17|48-&gt;18|48-&gt;18|48-&gt;18|49-&gt;19|49-&gt;19|49-&gt;19|50-&gt;20|50-&gt;20|50-&gt;20|51-&gt;21|51-&gt;21|51-&gt;21|51-&gt;21|51-&gt;21|51-&gt;21|57-&gt;27|57-&gt;27|57-&gt;27|58-&gt;28|58-&gt;28|58-&gt;28|59-&gt;29|59-&gt;29|59-&gt;29|59-&gt;29|60-&gt;30|60-&gt;30|60-&gt;30|62-&gt;32|63-&gt;33|64-&gt;34
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

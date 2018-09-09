@@ -1,0 +1,13 @@
+@import java.util.concurrent.CompletableFuture
+@(tweets:CompletableFuture[List[twitter4j.Status]],searchkeyword:String)
+
+<html>
+<body>
+<h2>@tweets.get.size() Results searched for the selected hashtag :-</b>#@searchkeyword</h2>
+@for(tweet<-tweets.get){
+<p><b>Tweet:-</b>@tweet.getText</p>
+
+<p>------------------------------------------------------------------------------------------------------------------------------------------------</P>
+}
+</body>
+</html>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataProcessingOnSearchTweets.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">models</a> &gt; <span class="el_source">DataProcessingOnSearchTweets.java</span></div><h1>DataProcessingOnSearchTweets.java</h1><pre class="source lang-java linenums">package models;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import service.TwitterApi;
+import twitter4j.GeoLocation;
+import twitter4j.Query;
+
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.User;
+
+<span class="fc" id="L20">public class DataProcessingOnSearchTweets {</span>
+	
+	public static CompletableFuture&lt;List&lt;Status&gt;&gt; searchHashTag(String searchKeyword,TwitterApi twitterService)
+	
+	{
+<span class="fc" id="L25">		Query q=new Query(&quot;#&quot;+searchKeyword);</span>
+<span class="fc" id="L26">		q.setCount(10);</span>
+<span class="fc" id="L27">		CompletableFuture&lt;List&lt;Status&gt;&gt; futureTweet = CompletableFuture.supplyAsync(() -&gt; twitterService.getQueryResult(q));</span>
+       
+<span class="fc" id="L29">        return futureTweet ;</span>
+	
+	}
+	
+	public static CompletableFuture&lt;List&lt;Status&gt;&gt; getUser20TopTweets(String screenName,TwitterApi twitterService) throws TwitterException{
+<span class="fc" id="L34">		return CompletableFuture.supplyAsync(() -&gt; {</span>
+			List&lt;Status&gt; recentPost = null;
+			try {
+				recentPost = twitterService.getUserTimeline(screenName);
+			} catch (TwitterException exp) {
+				
+			}
+			return recentPost.stream().limit(10).collect(Collectors.toList());
+		});
+	}
+	
+	public static CompletableFuture&lt;User&gt; getUserData(String screenName,TwitterApi twitterService) throws TwitterException
+	{
+<span class="fc" id="L47">		return CompletableFuture.supplyAsync(() -&gt; {</span>
+			User user = null;
+			try {
+				
+				user = twitterService.showUser(screenName);
+			} catch (TwitterException exp) {
+				
+			}
+			return user;
+		});
+		
+		
+	}
+	
+	public static CompletableFuture&lt;List&lt;String&gt;&gt; searchLocationTweets(Double latitude,Double longitude,TwitterApi twitterService)
+	{
+		
+<span class="fc" id="L64">		CompletableFuture&lt;List&lt;Status&gt;&gt; tweets = null;</span>
+		
+		
+<span class="fc" id="L67">			tweets = CompletableFuture.supplyAsync(()-&gt;{</span>
+				
+				
+					GeoLocation geo = new GeoLocation(latitude,longitude);
+					Query q= new Query();
+					q.geoCode(geo, 500, &quot;1km&quot;);
+					q.count(10);
+				return twitterService.getQueryResult(q);
+			});
+<span class="fc" id="L76">		CompletableFuture&lt;List&lt;String&gt;&gt; finalone = null;</span>
+			
+<span class="fc" id="L78">			finalone = tweets.thenApply(i-&gt;i.stream().map(j-&gt;j.getText()).collect(Collectors.toList()));</span>
+			
+<span class="fc" id="L80">			return finalone;</span>
+		
+	}
+	
+public static String setEmotionCount(List&lt;Status&gt; tweets) {
+		
+		
+<span class="fc" id="L87">		Long happycount = tweets.stream().map(i-&gt;i.getText()).filter(st-&gt;(st.contains(&quot;:-)&quot;)||st.contains(&quot;:)&quot;)) &amp;&amp; !(st.contains(&quot;:-(&quot;)||st.contains(&quot;:(&quot;))).count();</span>
+<span class="fc" id="L88">		Long sadcount = tweets.stream().map(i-&gt;i.getText()).filter(st-&gt;(st.contains(&quot;:-(&quot;)||st.contains(&quot;:(&quot;)) &amp;&amp; !(st.contains(&quot;:-)&quot;)||st.contains(&quot;:)&quot;))).count();</span>
+<span class="fc" id="L89">		Long neutralcount =tweets.stream().map(i-&gt;i.getText()).filter(st-&gt;!(st.contains(&quot;:-(&quot;)||st.contains(&quot;:(&quot;)) &amp;&amp; !(st.contains(&quot;:-)&quot;)||st.contains(&quot;:)&quot;))).count();</span>
+		
+<span class="fc" id="L91">		Long total=happycount+sadcount+neutralcount;</span>
+		
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		if(total!=0) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		if(((happycount*100)/total)&gt;70) {</span>
+<span class="fc" id="L95">			return &quot;:-)&quot;;</span>
+		}
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		else if(((sadcount*100)/total)&gt;70) {</span>
+<span class="fc" id="L98">			return &quot;:-(&quot;;</span>
+		}
+		else {
+<span class="fc" id="L101">			return &quot;:-|&quot;;</span>
+		}
+		}
+<span class="fc" id="L104">		else {return &quot;:-|&quot;;}</span>
+			
+		}
+
+
+public static CompletableFuture&lt;LinkedHashMap&lt;String,Long&gt;&gt; createWordCount(String keyword,TwitterApi twitterService)
+{
+	
+<span class="fc" id="L112">	CompletableFuture&lt;List&lt;Status&gt;&gt; tweets = null;</span>
+<span class="fc" id="L113">	Query query = new Query(keyword);</span>
+<span class="fc" id="L114">	query.setCount(100);</span>
+	
+<span class="fc" id="L116">		tweets = CompletableFuture.supplyAsync(()-&gt;twitterService.getQueryResult(query));</span>
+		
+<span class="fc" id="L118">CompletableFuture&lt;String[]&gt; str=tweets.thenApply(i-&gt;i.stream().map(j-&gt;j.getText()).reduce(&quot;&quot;,(t1,t2)-&gt;t1+t2).replaceAll(&quot;[^\\w\\s]&quot;, &quot;&quot;).trim().replaceAll(&quot; +&quot;, &quot; &quot;).split(&quot;\\s&quot;));</span>
+	 
+
+<span class="fc" id="L121">CompletableFuture&lt;LinkedHashMap&lt;String,Long&gt;&gt; myMap=	</span>
+<span class="fc" id="L122">		str.thenApply(q-&gt;Arrays.stream(q).map(i-&gt;i.toLowerCase()).</span>
+				collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().sorted(Map.Entry.&lt;String, Long&gt;comparingByValue()
+		                 .reversed()).
+				collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldvalue,newvalue)-&gt;oldvalue,LinkedHashMap::new)));
+			
+
+<span class="fc" id="L128">return myMap;</span>
+    
+
+}
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

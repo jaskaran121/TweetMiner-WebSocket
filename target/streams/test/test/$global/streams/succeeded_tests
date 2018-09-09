@@ -1,0 +1,11 @@
+#Successful Tests
+#Tue Aug 14 12:31:26 EDT 2018
+ActorsTest.HashTagActorTest=1534264286150
+ActorsTest.ReactiveTweetActorTest=1534264285800
+ActorsTest.TweetUserActorTest=1534264286484
+modelTest.SearchResultsTest=1534264286530
+ActorsTest.LocationActorTest=1534264286332
+controllertest.ControllerTest=1534264285111
+modelTest.TweetTest=1534264286568
+ActorsTest.UserActorTest=1534264286020
+modelTest.TestDataProcessingOnSerchTweetsModel=1534264285915

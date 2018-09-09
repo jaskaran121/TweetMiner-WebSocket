@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HomeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">controllers</a> &gt; <span class="el_source">HomeController.java</span></div><h1>HomeController.java</h1><pre class="source lang-java linenums">package controllers;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import javax.inject.Inject;
+import java.util.LinkedHashMap;
+import actors.ReactiveTweetActor;
+import actors.TweetUserActor;
+import actors.UserActor;
+import actors.HashTagActor;
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import org.slf4j.Logger;
+import static akka.pattern.Patterns.ask;
+import com.fasterxml.jackson.databind.JsonNode;
+import actors.UserActor;
+import akka.stream.Materializer;
+import play.libs.streams.ActorFlow;
+import play.mvc.Controller;
+import play.mvc.Http.RequestHeader;
+import play.mvc.Result;
+import play.mvc.WebSocket;
+import scala.compat.java8.FutureConverters;
+import service.ActualTwitterApi;
+import service.TwitterApi;
+import twitter4j.Query;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.User;
+import akka.stream.javadsl.Flow;
+import play.mvc.*;
+import play.api.libs.json.Json;
+import play.libs.F.Either;
+import akka.NotUsed;
+import java.util.Map;
+import actors.WordCountActor;
+import actors.LocationActor;
+
+
+public class HomeController extends Controller {
+	private ActorSystem actorSystem;
+	private Materializer materializer;
+	private ActorRef reactiveTweetActor;
+	private TwitterApi twitterService ;
+	private ActorRef tweetUserActor;
+	private ActorRef hashTagActor;
+	private ActorRef wordCountActor;
+	private ActorRef locationActor;
+<span class="fc" id="L52">	 private final Logger logger = org.slf4j.LoggerFactory.getLogger(&quot;controllers.HomeController&quot;);</span>
+	@Inject
+<span class="fc" id="L54">	public HomeController(ActorSystem system,Materializer materializer,TwitterApi twitterService ) {</span>
+<span class="fc" id="L55">		this.actorSystem = system;</span>
+<span class="fc" id="L56">		this.materializer = materializer;</span>
+<span class="fc" id="L57">		this.twitterService=twitterService;</span>
+<span class="fc" id="L58">		this.reactiveTweetActor = actorSystem.actorOf(ReactiveTweetActor.getProps(this.twitterService),&quot;reactiveTweetActor&quot;);</span>
+<span class="fc" id="L59">		this.tweetUserActor=actorSystem.actorOf(TweetUserActor.getProps(this.twitterService),&quot;tweetUserActor&quot;);</span>
+<span class="fc" id="L60">		this.hashTagActor=actorSystem.actorOf(HashTagActor.getProps(this.twitterService),&quot;hashtagActor&quot;);</span>
+<span class="fc" id="L61">		this.wordCountActor = actorSystem.actorOf(WordCountActor.getProps(this.twitterService),&quot;wordCountActor&quot;);</span>
+<span class="fc" id="L62">		this.locationActor = actorSystem.actorOf(LocationActor.getProps(this.twitterService),&quot;locationActor&quot;);</span>
+<span class="fc" id="L63">	}</span>
+	
+	
+      public Result index() {
+<span class="fc" id="L67">        return ok(views.html.index.render(request()));</span>
+    }
+    /**
+     * 
+     * @return Websocket
+     */
+    public WebSocket ws() {
+<span class="fc" id="L74">    	 return WebSocket.Json.acceptOrResult(request -&gt; {</span>
+             if (sameOriginCheck(request)) {     
+            	 
+            	 return CompletableFuture.completedFuture(
+                        Either.Right(ActorFlow.actorRef(UserActor::getProps,
+                                 actorSystem, materializer)));
+            	 
+
+             } else {
+                 return CompletableFuture.completedFuture(Either.Left(forbidden()));
+             }
+         });
+    	//return WebSocket.Json.accept(request -&gt; ActorFlow.actorRef(UserActor::getProps,actorSystem,materializer));
+    }
+    
+
+    public boolean sameOriginCheck(Http.RequestHeader rh) {
+<span class="fc" id="L91">        final String origin = rh.header(&quot;Origin&quot;).orElse(&quot;&quot;);</span>
+
+<span class="fc bfc" id="L93" title="All 4 branches covered.">     if (origin.contains(&quot;localhost:9000&quot;) || origin.contains(&quot;localhost:19001&quot;)) {</span>
+<span class="fc" id="L94">            logger.debug(&quot;originValue = &quot; + origin);</span>
+<span class="fc" id="L95">            return true;</span>
+        } else {
+<span class="fc" id="L97">            logger.error(&quot;originCheck: rejecting request because Origin header value &quot; + origin + &quot; is not in the same origin&quot;);</span>
+<span class="fc" id="L98">            return false;</span>
+        }
+    }
+
+	public CompletableFuture&lt;Result&gt; showUser(String screenName) 
+	{
+<span class="fc" id="L104">		return (CompletableFuture&lt;Result&gt;) FutureConverters.toJava(ask(tweetUserActor, new TweetUserActor.TweetUserActorProtocolGetUser(screenName) , 10000))</span>
+<span class="fc" id="L105">		.thenCombine(FutureConverters.toJava(ask(tweetUserActor, new TweetUserActor.TweetUserActorProtocolGetTimeLine(screenName) , 20000)),	(user,recentPost)-&gt; ok(views.html.user.render((CompletableFuture&lt;User&gt;) user, (CompletableFuture&lt;List&lt;Status&gt;&gt;) recentPost)));</span>
+
+		
+	}
+	
+	public CompletionStage&lt;Result&gt; searchHashTag(String searchKeyword)
+	{
+<span class="fc" id="L112">		return (CompletionStage&lt;Result&gt;) FutureConverters.toJava(ask(hashTagActor,new HashTagActor.HashtagActorProtocol(searchKeyword) , 10000))</span>
+<span class="fc" id="L113">				.thenApply(tweets-&gt; ok(views.html.hashtag.render((CompletableFuture&lt;List&lt;Status&gt;&gt;) tweets,searchKeyword)));</span>
+	
+	}
+	
+	public CompletionStage&lt;Result&gt; createWordCount(String keyword)
+	{
+<span class="fc" id="L119">		return (CompletionStage&lt;Result&gt;) FutureConverters.toJava(ask(wordCountActor,new WordCountActor.WordCountActorProtocol(keyword),10000)).</span>
+<span class="fc" id="L120">				thenApply(hmap-&gt;ok(views.html.wordcount.render((CompletableFuture&lt;LinkedHashMap&lt;String,Long&gt;&gt;) hmap)));</span>
+	}
+
+	public CompletionStage&lt;Result&gt; getLocation(Double latitude,Double longitude)
+	{
+<span class="fc" id="L125">		return (CompletionStage&lt;Result&gt;) FutureConverters.toJava(ask(locationActor,new LocationActor.LocationActorProtocol(latitude,longitude),10000)).</span>
+<span class="fc" id="L126">				thenApply(list-&gt;ok(views.html.location.render((CompletableFuture&lt;List&lt;String&gt;&gt;) list,latitude,longitude)));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

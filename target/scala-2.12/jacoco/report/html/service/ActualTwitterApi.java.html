@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActualTwitterApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">ActualTwitterApi.java</span></div><h1>ActualTwitterApi.java</h1><pre class="source lang-java linenums">/**
+ * 
+ */
+package service;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.function.Function;
+import javax.inject.Singleton;
+
+import com.google.inject.Inject;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+
+
+import models.Tweet;
+
+import play.mvc.Result;
+import twitter4j.GeoLocation;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
+import twitter4j.conf.ConfigurationBuilder;
+import java.util.Map;
+
+
+@Singleton
+public class ActualTwitterApi implements TwitterApi{
+	
+	private final Config config;
+	
+	private final Twitter twitter;
+	
+
+<span class="fc" id="L47">	public ActualTwitterApi() {</span>
+<span class="fc" id="L48">		config = ConfigFactory.load();</span>
+
+<span class="fc" id="L50">		ConfigurationBuilder cb = new ConfigurationBuilder();</span>
+<span class="fc" id="L51">		cb.setDebugEnabled(true).setOAuthConsumerKey(config.getString(&quot;CONSUMER_KEY&quot;))</span>
+<span class="fc" id="L52">				.setOAuthConsumerSecret(config.getString(&quot;CONSUMER_SECRET&quot;))</span>
+<span class="fc" id="L53">				.setOAuthAccessToken(config.getString(&quot;ACCESS_TOKEN&quot;))</span>
+<span class="fc" id="L54">				.setOAuthAccessTokenSecret(config.getString(&quot;ACCESS_TOKEN_SECRET&quot;));</span>
+<span class="fc" id="L55">		TwitterFactory tf = new TwitterFactory(cb.build());</span>
+<span class="fc" id="L56">		twitter = tf.getInstance();</span>
+<span class="fc" id="L57">	}</span>
+	
+	
+	
+	@Override
+	public List&lt;Status&gt; getQueryResult(Query q) {
+<span class="nc" id="L63">	List&lt;Status&gt; tweets= null;</span>
+	
+	try {
+<span class="nc" id="L66">			tweets = twitter.search(q).getTweets();</span>
+<span class="nc" id="L67">		} catch (TwitterException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L69">			e.printStackTrace();</span>
+<span class="nc" id="L70">		}</span>
+<span class="nc" id="L71">		return tweets	;</span>
+	
+	}
+	@Override
+	public User showUser(String screenName) throws TwitterException
+	{
+<span class="nc" id="L77">		return twitter.showUser(screenName);	</span>
+	}
+	@Override
+	public List&lt;Status&gt; getUserTimeline(String screenName) throws TwitterException{
+<span class="nc" id="L81">		return (List&lt;Status&gt;)twitter.getUserTimeline(screenName);</span>
+	}
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

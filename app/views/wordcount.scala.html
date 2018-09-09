@@ -1,0 +1,15 @@
+
+@import java.util.concurrent.CompletableFuture
+@(tweets:CompletableFuture[LinkedHashMap[String,Long]])
+
+<html>
+ <title>Word Count Static</title>
+ 
+<body>
+<h2>Word Level Statistics Table</h2>
+@for((word,count)<-tweets.get){
+<p>@word - @count</p>
+}
+	
+</body>
+</html>

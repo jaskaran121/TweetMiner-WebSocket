@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MockTwitterService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">MockTwitterService.java</span></div><h1>MockTwitterService.java</h1><pre class="source lang-java linenums">package service;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+
+import twitter4j.GeoLocation;
+import twitter4j.HashtagEntity;
+import twitter4j.MediaEntity;
+import twitter4j.Place;
+import twitter4j.Query;
+import twitter4j.RateLimitStatus;
+import twitter4j.ResponseList;
+import twitter4j.Scopes;
+import twitter4j.Status;
+import twitter4j.SymbolEntity;
+import twitter4j.TwitterException;
+import twitter4j.URLEntity;
+import twitter4j.User;
+import twitter4j.UserMentionEntity;
+
+
+
+<span class="fc" id="L30">public class MockTwitterService implements TwitterApi {</span>
+	
+    public static class mockStatus implements Status {
+
+    	String username;
+    	String tweet;
+    	String locatioName;
+    	Double longitude;
+    	Double lattitude;
+    	List&lt;String&gt; hashtags;
+    	
+		/**
+		 * @param username
+		 * @param tweet
+		 * @param locatioName
+		 * @param longitude
+		 * @param lattitude
+		 * @param hashtags
+		 */
+<span class="fc" id="L49">		public mockStatus(String username, String tweet, String locatioName,List&lt;String&gt; hashtags,Double longitude,Double lattitude) {</span>
+<span class="fc" id="L50">			this.username = username;</span>
+<span class="fc" id="L51">			this.tweet = tweet;</span>
+<span class="fc" id="L52">			this.locatioName = locatioName;</span>
+<span class="fc" id="L53">			this.hashtags = hashtags;</span>
+<span class="fc" id="L54">			this.lattitude=lattitude;</span>
+<span class="fc" id="L55">			this.longitude=longitude;</span>
+<span class="fc" id="L56">		}</span>
+
+		@Override
+		public int compareTo(Status arg0) {
+			// TODO Auto-generated method stub
+<span class="nc" id="L61">			return 0;</span>
+		}
+
+		@Override
+		public RateLimitStatus getRateLimitStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L67">			return null;</span>
+		}
+
+		@Override
+		public int getAccessLevel() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L73">			return 0;</span>
+		}
+
+		@Override
+		public UserMentionEntity[] getUserMentionEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L79">			return null;</span>
+		}
+
+		@Override
+		public URLEntity[] getURLEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L85">			return null;</span>
+		}
+
+		@Override
+		public HashtagEntity[] getHashtagEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L91">			List&lt;HashtagEntity&gt; l= new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">			for (String string : hashtags) {</span>
+<span class="nc" id="L93">				HashtagEntity ht=new mockHashTagEntiy(string);</span>
+<span class="nc" id="L94">				l.add(ht);</span>
+				
+<span class="nc" id="L96">			}</span>
+<span class="nc" id="L97">			return (HashtagEntity[]) l.toArray();</span>
+		}
+
+		@Override
+		public MediaEntity[] getMediaEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L103">			return null;</span>
+		}
+
+		@Override
+		public SymbolEntity[] getSymbolEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L109">			return null;</span>
+		}
+
+		@Override
+		public Date getCreatedAt() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L115">			return null;</span>
+		}
+
+		@Override
+		public long getId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L121">			return 0;</span>
+		}
+
+		@Override
+		public String getText() {
+			// TODO Auto-generated method stub
+			return tweet;
+		}
+
+		@Override
+		public int getDisplayTextRangeStart() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L133">			return 0;</span>
+		}
+
+		@Override
+		public int getDisplayTextRangeEnd() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L139">			return 0;</span>
+		}
+
+		@Override
+		public String getSource() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L145">			return null;</span>
+		}
+
+		@Override
+		public boolean isTruncated() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L151">			return false;</span>
+		}
+
+		@Override
+		public long getInReplyToStatusId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L157">			return 0;</span>
+		}
+
+		@Override
+		public long getInReplyToUserId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L163">			return 0;</span>
+		}
+
+		@Override
+		public String getInReplyToScreenName() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L169">			return null;</span>
+		}
+
+		@Override
+		public GeoLocation getGeoLocation() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L175">			return null;</span>
+		}
+
+		@Override
+		public Place getPlace() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L181">			Place p=new mockPlace(this.locatioName, this.longitude, this.lattitude);</span>
+<span class="nc" id="L182">			return p;</span>
+		}
+
+		@Override
+		public boolean isFavorited() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L188">			return false;</span>
+		}
+
+		@Override
+		public boolean isRetweeted() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L194">			return false;</span>
+		}
+
+		@Override
+		public int getFavoriteCount() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L200">			return 0;</span>
+		}
+
+		@Override
+		public User getUser() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L206">			return new mockUser(this.username);</span>
+		}
+
+		@Override
+		public boolean isRetweet() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L212">			return false;</span>
+		}
+
+		@Override
+		public Status getRetweetedStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L218">			return null;</span>
+		}
+
+		@Override
+		public long[] getContributors() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L224">			return null;</span>
+		}
+
+		@Override
+		public int getRetweetCount() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L230">			return 0;</span>
+		}
+
+		@Override
+		public boolean isRetweetedByMe() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L236">			return false;</span>
+		}
+
+		@Override
+		public long getCurrentUserRetweetId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L242">			return 0;</span>
+		}
+
+		@Override
+		public boolean isPossiblySensitive() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L248">			return false;</span>
+		}
+
+		@Override
+		public String getLang() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L254">			return null;</span>
+		}
+
+		@Override
+		public Scopes getScopes() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L260">			return null;</span>
+		}
+
+		@Override
+		public String[] getWithheldInCountries() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L266">			return null;</span>
+		}
+
+		@Override
+		public long getQuotedStatusId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L272">			return 0;</span>
+		}
+
+		@Override
+		public Status getQuotedStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L278">			return null;</span>
+		}
+
+    }
+     
+
+    public static class mockHashTagEntiy implements HashtagEntity{
+    	String hashtag;
+    	
+		/**
+		 * @param hashtag
+		 */
+<span class="fc" id="L290">		public mockHashTagEntiy(String hashtag) {</span>
+<span class="fc" id="L291">			this.hashtag = hashtag;</span>
+<span class="fc" id="L292">		}</span>
+
+		@Override
+		public String getText() {
+			// TODO Auto-generated method stub
+			return hashtag;
+		}
+
+		@Override
+		public int getStart() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L303">			return 0;</span>
+		}
+
+		@Override
+		public int getEnd() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L309">			return 0;</span>
+		}
+    	
+    }
+    
+    public static class mockPlace implements Place{
+    	String fullName;
+    	Double longitude;
+    	Double lattitude;
+		/**
+		 * @param fullName
+		 */
+<span class="nc" id="L321">		public mockPlace(String fullName,Double longitude,Double lattitude) {</span>
+<span class="nc" id="L322">			this.fullName = fullName;</span>
+<span class="nc" id="L323">			this.lattitude=lattitude;</span>
+<span class="nc" id="L324">			this.longitude=longitude;</span>
+<span class="nc" id="L325">		}</span>
+
+		@Override
+		public RateLimitStatus getRateLimitStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L330">			return null;</span>
+		}
+
+		@Override
+		public int getAccessLevel() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L336">			return 0;</span>
+		}
+
+		@Override
+		public int compareTo(Place arg0) {
+			// TODO Auto-generated method stub
+<span class="nc" id="L342">			return 0;</span>
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L348">			return null;</span>
+		}
+
+		@Override
+		public String getStreetAddress() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L354">			return null;</span>
+		}
+
+		@Override
+		public String getCountryCode() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L360">			return null;</span>
+		}
+
+		@Override
+		public String getId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L366">			return null;</span>
+		}
+
+		@Override
+		public String getCountry() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L372">			return null;</span>
+		}
+
+		@Override
+		public String getPlaceType() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L378">			return null;</span>
+		}
+
+		@Override
+		public String getURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L384">			return null;</span>
+		}
+
+		@Override
+		public String getFullName() {
+			// TODO Auto-generated method stub
+			return fullName;
+		}
+
+		@Override
+		public String getBoundingBoxType() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L396">			return null;</span>
+		}
+
+		@Override
+		public GeoLocation[][] getBoundingBoxCoordinates() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L402">			GeoLocation[][] gl= new GeoLocation[1][1];</span>
+<span class="nc" id="L403">			gl[0][0]=new GeoLocation(this.lattitude, this.longitude);</span>
+<span class="nc" id="L404">			gl[1][0]=new GeoLocation(this.lattitude, this.longitude);</span>
+<span class="nc" id="L405">			return gl;</span>
+		}
+
+		@Override
+		public String getGeometryType() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L411">			return null;</span>
+		}
+
+		@Override
+		public GeoLocation[][] getGeometryCoordinates() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L417">			return null;</span>
+		}
+
+		@Override
+		public Place[] getContainedWithIn() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L423">			return null;</span>
+		}
+    	
+    }
+    
+    public static class mockUser implements User{
+    	
+    	String screenName;
+		/**
+		 * @param screenName
+		 */
+<span class="fc" id="L434">		public mockUser(String screenName) {</span>
+<span class="fc" id="L435">			this.screenName = screenName;</span>
+<span class="fc" id="L436">		}</span>
+
+		@Override
+		public int compareTo(User o) {
+			// TODO Auto-generated method stub
+<span class="nc" id="L441">			return 0;</span>
+		}
+
+		@Override
+		public RateLimitStatus getRateLimitStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L447">			return null;</span>
+		}
+
+		@Override
+		public int getAccessLevel() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L453">			return 0;</span>
+		}
+
+		@Override
+		public long getId() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L459">			return 0;</span>
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L465">			return null;</span>
+		}
+
+		@Override
+		public String getEmail() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L471">			return null;</span>
+		}
+
+		@Override
+		public String getScreenName() {
+			// TODO Auto-generated method stub
+			return this.screenName;
+		}
+
+		@Override
+		public String getLocation() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L483">			return null;</span>
+		}
+
+		@Override
+		public String getDescription() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L489">			return null;</span>
+		}
+
+		@Override
+		public boolean isContributorsEnabled() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L495">			return false;</span>
+		}
+
+		@Override
+		public String getProfileImageURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L501">			return &quot;Dummy Url&quot;;</span>
+		}
+
+		@Override
+		public String getBiggerProfileImageURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L507">			return &quot;Dummy Big Url&quot;;</span>
+		}
+
+		@Override
+		public String getMiniProfileImageURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L513">			return &quot;Dummy mini profile Url&quot;;</span>
+		}
+
+		@Override
+		public String getOriginalProfileImageURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L519">			return &quot;Dummy profile image url&quot;;</span>
+		}
+
+		@Override
+		public String getProfileImageURLHttps() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L525">			return null;</span>
+		}
+
+		@Override
+		public String getBiggerProfileImageURLHttps() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L531">			return null;</span>
+		}
+
+		@Override
+		public String getMiniProfileImageURLHttps() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L537">			return null;</span>
+		}
+
+		@Override
+		public String getOriginalProfileImageURLHttps() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L543">			return null;</span>
+		}
+
+		@Override
+		public boolean isDefaultProfileImage() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L549">			return false;</span>
+		}
+
+		@Override
+		public String getURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L555">			return null;</span>
+		}
+
+		@Override
+		public boolean isProtected() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L561">			return false;</span>
+		}
+
+		@Override
+		public int getFollowersCount() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L567">			return 0;</span>
+		}
+
+		@Override
+		public Status getStatus() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L573">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBackgroundColor() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L579">			return null;</span>
+		}
+
+		@Override
+		public String getProfileTextColor() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L585">			return null;</span>
+		}
+
+		@Override
+		public String getProfileLinkColor() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L591">			return null;</span>
+		}
+
+		@Override
+		public String getProfileSidebarFillColor() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L597">			return null;</span>
+		}
+
+		@Override
+		public String getProfileSidebarBorderColor() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L603">			return null;</span>
+		}
+
+		@Override
+		public boolean isProfileUseBackgroundImage() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L609">			return false;</span>
+		}
+
+		@Override
+		public boolean isDefaultProfile() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L615">			return false;</span>
+		}
+
+		@Override
+		public boolean isShowAllInlineMedia() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L621">			return false;</span>
+		}
+
+		@Override
+		public int getFriendsCount() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L627">			return 0;</span>
+		}
+
+		@Override
+		public Date getCreatedAt() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L633">			return null;</span>
+		}
+
+		@Override
+		public int getFavouritesCount() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L639">			return 0;</span>
+		}
+
+		@Override
+		public int getUtcOffset() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L645">			return 0;</span>
+		}
+
+		@Override
+		public String getTimeZone() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L651">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBackgroundImageURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L657">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBackgroundImageUrlHttps() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L663">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L669">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerRetinaURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L675">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerIPadURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L681">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerIPadRetinaURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L687">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerMobileURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L693">			return null;</span>
+		}
+
+		@Override
+		public String getProfileBannerMobileRetinaURL() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L699">			return null;</span>
+		}
+
+		@Override
+		public boolean isProfileBackgroundTiled() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L705">			return false;</span>
+		}
+
+		@Override
+		public String getLang() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L711">			return null;</span>
+		}
+
+		@Override
+		public int getStatusesCount() {
+			// TODO Auto-generated method stub
+<span class="fc" id="L717">			return 0;</span>
+		}
+
+		@Override
+		public boolean isGeoEnabled() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L723">			return false;</span>
+		}
+
+		@Override
+		public boolean isVerified() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L729">			return false;</span>
+		}
+
+		@Override
+		public boolean isTranslator() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L735">			return false;</span>
+		}
+
+		@Override
+		public int getListedCount() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L741">			return 0;</span>
+		}
+
+		@Override
+		public boolean isFollowRequestSent() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L747">			return false;</span>
+		}
+
+		@Override
+		public URLEntity[] getDescriptionURLEntities() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L753">			return null;</span>
+		}
+
+		@Override
+		public URLEntity getURLEntity() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L759">			return null;</span>
+		}
+
+		@Override
+		public String[] getWithheldInCountries() {
+			// TODO Auto-generated method stub
+<span class="nc" id="L765">			return null;</span>
+		}
+    	
+    }
+    
+
+
+	@Override
+	public List&lt;Status&gt; getQueryResult(Query q) {
+		// TODO Auto-generated method stub
+<span class="fc" id="L775">		List&lt;Status&gt; l= new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L776" title="All 2 branches covered.">		for(int i=0; i&lt;10; i++) {</span>
+<span class="fc" id="L777">			Status s= new mockStatus(&quot;username &quot;+i, &quot;Mock Tweet for testing&quot;+i , &quot;MockLocation&quot;+i, Arrays.asList(&quot;testHashtag1&quot;,&quot;testHashtag2&quot;,&quot;testHashtag3&quot;), 45.516136, 73.656830);</span>
+<span class="fc" id="L778">			l.add(s);</span>
+		}
+<span class="fc" id="L780">		return l;</span>
+	}
+
+
+
+	@Override
+	public User showUser(String screenName) throws TwitterException {
+		// TODO Auto-generated method stub
+<span class="fc" id="L788">		return new mockUser(&quot;UserFOrTesting&quot;);</span>
+	}
+
+
+
+	@Override
+	public List&lt;Status&gt; getUserTimeline(String screenName) throws TwitterException {
+		// TODO Auto-generated method stub
+<span class="fc" id="L796">		List&lt;Status&gt; l= new ArrayList&lt;&gt;();</span>
+		 	
+<span class="fc bfc" id="L798" title="All 2 branches covered.">		for(int i=0; i&lt;10; i++) {</span>
+<span class="fc" id="L799">			Status s= new mockStatus(&quot;username &quot;+i, &quot;Mock Tweet for testing&quot;+i , &quot;MockLocation&quot;+i, Arrays.asList(&quot;testHashtag1&quot;,&quot;testHashtag2&quot;,&quot;testHashtag3&quot;), 45.516136, 73.656830);</span>
+<span class="fc" id="L800">			l.add(s);</span>
+		}
+	
+<span class="fc" id="L803">		return  l;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
